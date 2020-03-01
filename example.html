@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Simple Playlist Music Player</title>  
+  </head>
+  <body>
+  
+  <style>
+  #spmp-container {
+	color: #000;
+}
+#spmp-vol-fill, #spmp-prog-fill {
+	background-color: #000;
+}
+.spmp-button:hover, #spmp-vol-bar, .spmp-track:hover, #spmp-prog-bar {
+	background-color: #f8ffff;
+}
+#spmp-prog-buffer {
+	background-color: #eee;
+}
+#spmp-playlist, #spmp-vol, #spmp-prog, .spmp-button {
+	background-color: #d0ffff;
+}
+  </style>
+  <div id="spmp-container" class="autoplay loop spmp-custom" style="width: 300px;">
+	<a href="http://www.hochmuth.com/mp3/Haydn_Cello_Concerto_D-1.mp3">HAYDN "CONCERTO D-MAJOR"</a>
+	<a href="http://www.hochmuth.com/mp3/Tchaikovsky_Rococo_Var_orch.mp3">TCHAIKOVSKY "ROCOCO-VARIATIONS"</a>
+	<a href="http://www.hochmuth.com/mp3/Vivaldi_Sonata_eminor_.mp3">VIVALDI SONATA "ADAGIO"</a>
+  </div>
+  <script src="./build/spmp.js" type="text/javascript"></script>
+  
+  </body>
+</html>

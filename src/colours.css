@@ -1,0 +1,15 @@
+#spmp-container {
+	color: #000;
+}
+#spmp-vol-fill, #spmp-prog-fill {
+	background-color: #000;
+}
+.spmp-button:hover, #spmp-vol-bar, .spmp-track:hover, #spmp-prog-bar {
+	background-color: #f8ffff;
+}
+#spmp-prog-buffer {
+	background-color: #eee;
+}
+#spmp-playlist, #spmp-vol, #spmp-prog, .spmp-button {
+	background-color: #d0ffff;
+}
