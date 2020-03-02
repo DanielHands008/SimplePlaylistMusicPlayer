@@ -17,11 +17,13 @@ var colours = fs.readFileSync('./src/colours.css', 'utf8');
 
 var cssMini = new CleanCSS().minify(css).styles;
 var coloursMini = new CleanCSS().minify(colours).styles;
+var code = startOfFile + scriptJS + varColoursJS + coloursMini + endVarJS + varCssJS + cssMini + endVarJS + linkerJS + endOfFile;
 
-var mini = UglifyJS.minify(startOfFile + scriptJS + varColoursJS + coloursMini + endVarJS + varCssJS + cssMini + endVarJS + linkerJS + endOfFile);
+var mini = UglifyJS.minify(code);
 
 if (!fs.existsSync('./build')){
     fs.mkdirSync('./build');
 }
 
-fs.writeFileSync('./build/spmp.js', mini.code);
+if(debug) fs.writeFileSync('./build/spmp.js', code);
+else fs.writeFileSync('./build/spmp.js', mini.code);
