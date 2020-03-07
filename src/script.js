@@ -40,11 +40,11 @@ for (var c = 0; c < containers.length; c++) {
 		var prevNextIcon = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M4 2v20h-2v-20h2zm18 0l-16 10 16 10v-20z"/></svg>';
 		
 		// Set the inner HTML of the container.
-		container.innerHTML = '<div id="spmp-playpause" class="spmp-button"><span class="spmp-playicon">' + arrowIcon + '</span><span class="spmp-pauseicon">' + pauseIcon + '</span></div><div id="spmp-stop" class="spmp-button">' + stopIcon + '</div><div id="spmp-prev" class="spmp-button">' + prevNextIcon + '</div><div id="spmp-next" class="spmp-button">' + prevNextIcon + '</div><div id="spmp-prog"><div id="spmp-prog-bar"><div id="spmp-prog-buffer"></div><div id="spmp-prog-fill"></div></div></div><div id="spmp-drop" class="spmp-button spmp-right">' + arrowIcon + '</div><div id="spmp-vol" class="spmp-right"><div id="spmp-vol-bar"><div id="spmp-vol-fill"></div></div><div id="spmp-mute" class="spmp-button"><span class="spmp-unmutedicon">' + unmutedIcon + '</span><span class="spmp-mutedicon">' + mutedIcon + '</span></div></div><div id="spmp-playlist"><div id="spmp-playlist-container"></div></div><audio id="spmp-audio"></audio>';
+		container.innerHTML = '<div id="spmp-playpause" class="spmp-b"><span class="spmp-pli">' + arrowIcon + '</span><span class="spmp-pai">' + pauseIcon + '</span></div><div id="spmp-stop" class="spmp-b">' + stopIcon + '</div><div id="spmp-prev" class="spmp-b">' + prevNextIcon + '</div><div id="spmp-next" class="spmp-b">' + prevNextIcon + '</div><div id="spmp-prog"><div id="spmp-prog-bar"><div id="spmp-prog-buffer"></div><div id="spmp-prog-fill"></div></div></div><div id="spmp-drop" class="spmp-b spmp-right">' + arrowIcon + '</div><div id="spmp-vol" class="spmp-right"><div id="spmp-vol-bar"><div id="spmp-vol-fill"></div></div><div id="spmp-mute" class="spmp-b"><span class="spmp-ui">' + unmutedIcon + '</span><span class="spmp-mi">' + mutedIcon + '</span></div></div><div id="spmp-playlist"><div id="spmp-playlist-container"></div></div><audio id="spmp-audio"></audio>';
 
 		// Add the tracks to the playlist.
 		for (var i = 0; i < music.length; i++) {
-			byId('spmp-playlist-container').insertAdjacentHTML('beforeend', '<div class="spmp-track" id="spmp-track' + i + '"><div class="spmp-indicator"><span class="spmp-playicon">' + arrowIcon + '</span><span class="spmp-pauseicon">' + pauseIcon + '</span></div>' + music[i][0] + '</div>');
+			byId('spmp-playlist-container').insertAdjacentHTML('beforeend', '<div class="spmp-track" id="spmp-track' + i + '"><div class="spmp-id"><span class="spmp-pli">' + arrowIcon + '</span><span class="spmp-pai">' + pauseIcon + '</span></div>' + music[i][0] + '</div>');
 			byId('spmp-track' + i).addEventListener('click', clickedTrack);
 		}
 
