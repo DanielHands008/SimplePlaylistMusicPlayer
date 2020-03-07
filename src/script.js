@@ -150,36 +150,16 @@ for (var c = 0; c < containers.length; c++) {
 		}
 
 		function hasClass(id, theClass) {
-			if (id == containerId) var classes = document.getElementById(containerId).className.split(' ');
-			else var classes = byId(id).className.split(' ');
-			for(var i = 0 ; i < classes.length ; i++) {
-				if (classes[i] == theClass) return true;
-			}
-			return false;
+			if (id == containerId) return document.getElementById(containerId).classList.contains(theClass);
+			else return byId(id).classList.contains(theClass);
 		}
 		function addClass(id, theClass) {
-			var alreadyPresent = false;
-			if (id == containerId) var classes = document.getElementById(containerId).className.split(' ');
-			else var classes = byId(id).className.split(' ');
-			for(var i = 0 ; i < classes.length ; i++) {
-				if (classes[i] == theClass) alreadyPresent = true;
-			}
-			if (alreadyPresent) return false;
-			classes.push(theClass);
-			if (id == containerId) return document.getElementById(id).className = classes.join(' ');
-			else return byId(id).className = classes.join(' ');
+			if (id == containerId) document.getElementById(containerId).classList.add(theClass);
+			else byId(id).classList.add(theClass);
 		}
 		function removeClass(id, theClass) {
-			if (id == containerId) var classes = document.getElementById(containerId).className.split(' ');
-			else var classes = byId(id).className.split(' ');
-			for(var i = 0 ; i < classes.length ; i++) {
-				if (classes[i] == theClass) {
-					classes.splice(i, 1);
-					if (id == containerId) return document.getElementById(id).className = classes.join(' ');
-					else return byId(id).className = classes.join(' ');
-				}
-			}
-			return false;
+			if (id == containerId) document.getElementById(containerId).classList.remove(theClass);
+			else byId(id).classList.remove(theClass);
 		}
 
 		// Disable volume bar on touch devices.
