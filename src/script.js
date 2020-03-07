@@ -1,3 +1,4 @@
+(function(){
 // Setup vars.
 var containers = document.getElementsByClassName('spmp-container');
 for (var c = 0; c < containers.length; c++) {
@@ -150,15 +151,15 @@ for (var c = 0; c < containers.length; c++) {
 		}
 
 		function hasClass(id, theClass) {
-			if (id == containerId) return document.getElementById(containerId).classList.contains(theClass);
+			if (id == containerId) return container.classList.contains(theClass);
 			else return byId(id).classList.contains(theClass);
 		}
 		function addClass(id, theClass) {
-			if (id == containerId) document.getElementById(containerId).classList.add(theClass);
+			if (id == containerId) container.classList.add(theClass);
 			else byId(id).classList.add(theClass);
 		}
 		function removeClass(id, theClass) {
-			if (id == containerId) document.getElementById(containerId).classList.remove(theClass);
+			if (id == containerId) container.classList.remove(theClass);
 			else byId(id).classList.remove(theClass);
 		}
 
@@ -176,3 +177,15 @@ for (var c = 0; c < containers.length; c++) {
 
 		// Check if there are tracks in the playlist and set the audio src for the first track.
 		if (music.length > 0 && music[0].length > 0) player.src = music[pos][1];
+
+		setTimeout(function() { addClass(containerId, 'spmp-loaded'); }, 50);
+	})();
+}
+var css = '%css';
+buttonColour = 'black';
+var linkElement = document.createElement('link');
+linkElement.setAttribute('rel', 'stylesheet');
+linkElement.setAttribute('type', 'text/css');
+linkElement.setAttribute('href', 'data:text/css;charset=UTF-8,' + encodeURIComponent(css.split('%fill').join(buttonColour)));
+containers[0].parentNode.insertBefore(linkElement, containers[0]);
+})();

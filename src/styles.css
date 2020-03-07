@@ -190,3 +190,19 @@
 .spmp-container.spmp-open #spmp-drop:before {
 	transform: rotate(-90deg);
 }
+/* Colours */
+.spmp-container:not(.spmp-custom) {
+	color: #000;
+}
+.spmp-container:not(.spmp-custom) #spmp-vol-fill, .spmp-container:not(.spmp-custom) #spmp-prog-fill {
+	background-color: #000;
+}
+.spmp-container:not(.spmp-custom) .spmp-button:hover, .spmp-container:not(.spmp-custom) #spmp-vol-bar, .spmp-container:not(.spmp-custom) .spmp-track:hover, .spmp-container:not(.spmp-custom) #spmp-prog-bar {
+	background-color: #f8ffff;
+}
+.spmp-container:not(.spmp-custom) #spmp-prog-buffer {
+	background-color: #eee;
+}
+.spmp-container:not(.spmp-custom) #spmp-playlist, .spmp-container:not(.spmp-custom) #spmp-vol, .spmp-container:not(.spmp-custom) #spmp-prog, .spmp-container:not(.spmp-custom) .spmp-button {
+	background-color: #d0ffff;
+}
