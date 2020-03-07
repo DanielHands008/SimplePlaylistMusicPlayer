@@ -26,13 +26,25 @@ for (var c = 0; c < containers.length; c++) {
 				music.push([node.innerHTML, node.href]);
 			}
 		}
+		
+		var unmutedIcon = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M6 7l8-5v20l-8-5v-10zm-6 10h4v-10h-4v10zm20.264-13.264l-1.497 1.497c1.847 1.783 2.983 4.157 2.983 6.767 0 2.61-1.135 4.984-2.983 6.766l1.498 1.498c2.305-2.153 3.735-5.055 3.735-8.264s-1.43-6.11-3.736-8.264zm-.489 8.264c0-2.084-.915-3.967-2.384-5.391l-1.503 1.503c1.011 1.049 1.637 2.401 1.637 3.888 0 1.488-.623 2.841-1.634 3.891l1.503 1.503c1.468-1.424 2.381-3.309 2.381-5.394z"/></svg>';
+		
+		var mutedIcon = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M19 7.358v15.642l-8-5v-.785l8-9.857zm3-6.094l-1.548-1.264-3.446 4.247-6.006 3.753v3.646l-2 2.464v-6.11h-4v10h.843l-3.843 4.736 1.548 1.264 18.452-22.736z"/></svg>';
+		
+		var arrowIcon = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M2 24v-24l20 12-20 12z"/></svg>';
 
+		var pauseIcon = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M10 24h-6v-24h6v24zm10-24h-6v24h6v-24z"/></svg>';
+		
+		var stopIcon = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M0 0h24v24h-24z"/></svg>';
+		
+		var prevNextIcon = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M4 2v20h-2v-20h2zm18 0l-16 10 16 10v-20z"/></svg>';
+		
 		// Set the inner HTML of the container.
-		container.innerHTML = '<div id="spmp-playpause" class="spmp-button"></div><div id="spmp-stop" class="spmp-button"></div><div id="spmp-prev" class="spmp-button"></div><div id="spmp-next" class="spmp-button"></div><div id="spmp-prog"><div id="spmp-prog-bar"><div id="spmp-prog-buffer"></div><div id="spmp-prog-fill"></div></div></div><div id="spmp-drop" class="spmp-button spmp-right"></div><div id="spmp-vol" class="spmp-right"><div id="spmp-vol-bar"><div id="spmp-vol-fill"></div></div><div id="spmp-mute" class="spmp-button"></div></div><div id="spmp-playlist"><div id="spmp-playlist-container"></div></div><audio id="spmp-audio"></audio>';
+		container.innerHTML = '<div id="spmp-playpause" class="spmp-button"><span class="spmp-playicon">' + arrowIcon + '</span><span class="spmp-pauseicon">' + pauseIcon + '</span></div><div id="spmp-stop" class="spmp-button">' + stopIcon + '</div><div id="spmp-prev" class="spmp-button">' + prevNextIcon + '</div><div id="spmp-next" class="spmp-button">' + prevNextIcon + '</div><div id="spmp-prog"><div id="spmp-prog-bar"><div id="spmp-prog-buffer"></div><div id="spmp-prog-fill"></div></div></div><div id="spmp-drop" class="spmp-button spmp-right">' + arrowIcon + '</div><div id="spmp-vol" class="spmp-right"><div id="spmp-vol-bar"><div id="spmp-vol-fill"></div></div><div id="spmp-mute" class="spmp-button"><span class="spmp-unmutedicon">' + unmutedIcon + '</span><span class="spmp-mutedicon">' + mutedIcon + '</span></div></div><div id="spmp-playlist"><div id="spmp-playlist-container"></div></div><audio id="spmp-audio"></audio>';
 
 		// Add the tracks to the playlist.
 		for (var i = 0; i < music.length; i++) {
-			byId('spmp-playlist-container').insertAdjacentHTML('beforeend', '<div class="spmp-track" id="spmp-track' + i + '"><div class="spmp-indicator"></div>' + music[i][0] + '</div>');
+			byId('spmp-playlist-container').insertAdjacentHTML('beforeend', '<div class="spmp-track" id="spmp-track' + i + '"><div class="spmp-indicator"><span class="spmp-playicon">' + arrowIcon + '</span><span class="spmp-pauseicon">' + pauseIcon + '</span></div>' + music[i][0] + '</div>');
 			byId('spmp-track' + i).addEventListener('click', clickedTrack);
 		}
 
@@ -182,10 +194,9 @@ for (var c = 0; c < containers.length; c++) {
 	})();
 }
 var css = '%css';
-buttonColour = 'black';
 var linkElement = document.createElement('link');
 linkElement.setAttribute('rel', 'stylesheet');
 linkElement.setAttribute('type', 'text/css');
-linkElement.setAttribute('href', 'data:text/css;charset=UTF-8,' + encodeURIComponent(css.split('%fill').join(buttonColour)));
+linkElement.setAttribute('href', 'data:text/css;charset=UTF-8,' + encodeURIComponent(css));
 containers[0].parentNode.insertBefore(linkElement, containers[0]);
 })();
