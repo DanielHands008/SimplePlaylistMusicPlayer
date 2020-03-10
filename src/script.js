@@ -22,6 +22,7 @@ for (var c = 0; c < containers.length; c++) {
 		var volBarPos = 0;
 		var addEvent = window.addEventListener.bind(window);
 		var container = containers[c];
+		var preload = hasClass(containerId, 'preload');
 
 		// Preloader
 		var preloader = document.createElement("audio");
@@ -67,6 +68,9 @@ for (var c = 0; c < containers.length; c++) {
 		var player = byId('spmp-audio');
 		var volBar = byId('spmp-vol-fill');
 
+		// Set preload on the audio element.
+		player.preload = preload;
+
 		// Add events to UI.
 		byId('spmp-playpause').addEventListener('click', function(){
 			if (player.paused) player.play();
@@ -107,7 +111,7 @@ for (var c = 0; c < containers.length; c++) {
 		});
 		player.addEventListener('timeupdate', function(){
 			byId('spmp-prog-fill').style.width = (player.currentTime / player.duration) * 100 + '%';
-			if(player.currentTime > player.duration - 10)
+			if(preload && player.currentTime > player.duration - 10)
 				preloadNextTrack();
 		});
 		player.addEventListener('ended', nextSong);

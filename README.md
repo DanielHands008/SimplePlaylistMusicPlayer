@@ -17,6 +17,7 @@ A simple HTML 5 music player.
 |`spmp-container`|This class identifies the container of each player.|
 |`autoplay`|Automatically start playing when the page loads. Must be enabled in browser settings.|
 |`loop`|When the last track has finished playing start playing the first.|
+|`preload`|Preloads the next track when the current has 10 seconds left.|
 |`spmp-custom`|Disables the colours, use this with custom styles.|
 ## Custom Styles
 ```html
