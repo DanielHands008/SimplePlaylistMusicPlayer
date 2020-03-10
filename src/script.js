@@ -1,13 +1,18 @@
 (function(){
-// Setup vars.
+// Get the list of players.
 var containers = document.getElementsByClassName('spmp-container');
 for (var c = 0; c < containers.length; c++) {
 	(function(){
+
 		var containerId = 'spmp-container'+c;
+
 		containers[c].id = containerId;
+
 		var byId = function(id) {
 			return document.querySelector('#'+containerId+' '+'#'+id);
 		}
+
+		// Setup vars.
 		var music = [];
 		var pos = 0;
 		var seeking = false;
@@ -17,7 +22,16 @@ for (var c = 0; c < containers.length; c++) {
 		var volBarPos = 0;
 		var addEvent = window.addEventListener.bind(window);
 		var container = containers[c];
-		var buttonColour = getComputedStyle(container).color;
+
+		// Preloader
+		var preloader = document.createElement("audio");
+    preloader.volume = 0;
+		preloader.preload = true;
+
+		function preloadNextTrack() {
+				if(pos + 1 < music.length && preloader.src != music[pos + 1][1])
+					preloader.src = music[pos + 1][1];
+		}
 
 		// Get tracks from links in main container.
 		for (var i = 0; i < container.childNodes.length; i++) {
@@ -27,6 +41,7 @@ for (var c = 0; c < containers.length; c++) {
 			}
 		}
 		
+		// SVG HTML
 		var unmutedIcon = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M6 7l8-5v20l-8-5v-10zm-6 10h4v-10h-4v10zm20.264-13.264l-1.497 1.497c1.847 1.783 2.983 4.157 2.983 6.767 0 2.61-1.135 4.984-2.983 6.766l1.498 1.498c2.305-2.153 3.735-5.055 3.735-8.264s-1.43-6.11-3.736-8.264zm-.489 8.264c0-2.084-.915-3.967-2.384-5.391l-1.503 1.503c1.011 1.049 1.637 2.401 1.637 3.888 0 1.488-.623 2.841-1.634 3.891l1.503 1.503c1.468-1.424 2.381-3.309 2.381-5.394z"/></svg>';
 		
 		var mutedIcon = '<svg width="12" height="12" viewBox="0 0 24 24"><path d="M19 7.358v15.642l-8-5v-.785l8-9.857zm3-6.094l-1.548-1.264-3.446 4.247-6.006 3.753v3.646l-2 2.464v-6.11h-4v10h.843l-3.843 4.736 1.548 1.264 18.452-22.736z"/></svg>';
@@ -92,14 +107,16 @@ for (var c = 0; c < containers.length; c++) {
 		});
 		player.addEventListener('timeupdate', function(){
 			byId('spmp-prog-fill').style.width = (player.currentTime / player.duration) * 100 + '%';
+			if(player.currentTime > player.duration - 10)
+				preloadNextTrack();
 		});
 		player.addEventListener('ended', nextSong);
 		player.addEventListener('progress', function() {
-			var duration =  player.duration;
-			if (duration > 0) {
+			
+			if (player.duration > 0) {
 			  for (var i = 0; i < player.buffered.length; i++) {
 					if (player.buffered.start(player.buffered.length - 1 - i) < player.currentTime) {
-						byId("spmp-prog-buffer").style.width = (player.buffered.end(player.buffered.length - 1 - i) / duration) * 100 + "%";
+						byId("spmp-prog-buffer").style.width = (player.buffered.end(player.buffered.length - 1 - i) / player.duration) * 100 + "%";
 						break;
 					}
 				}
