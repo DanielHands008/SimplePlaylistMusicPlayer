@@ -211,7 +211,10 @@ for (var c = 0; c < containers.length; c++) {
 		// Check if there are tracks in the playlist and set the audio src for the first track.
 		if (music.length > 0 && music[0].length > 0) player.src = music[pos][1];
 
-		setTimeout(function() { addClass(containerId, 'spmp-loaded'); }, 50);
+		setTimeout(function() {
+			addClass(containerId, 'spmp-loaded');
+			container.style.visibility = 'visible';
+		}, 50);
 	})();
 }
 var css = '%css';
