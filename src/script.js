@@ -212,7 +212,6 @@
 			if (music.length > 0 && music[0].length > 0) player.src = music[pos][1];
 
 			setTimeout(function() {
-				addClass(containerId, 'spmp-loaded');
 				container.style.visibility = 'visible';
 			}, 0);
 		})();
